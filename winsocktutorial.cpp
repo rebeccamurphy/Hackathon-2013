@@ -38,3 +38,40 @@ if (WSAStartup(MAKEWORD(iReqWinsockVer,0), &wsaData)==0) {
 else {
     //  startup failed
 }
+
+//=======================================================================
+
+SOCKET hSocket;
+
+hSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+if (hSocket==INVALID_SOCKET) {
+    // error handling code
+}
+
+//=======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
