@@ -36,13 +36,13 @@ if( ! socket_send ( $sock , "INIT Guffaws", strlen($message) , 0))
 echo "Message send successfully \n";
  
 //Now receive reply from server
-if(socket_recv ( $sock , $buf , 6, MSG_WAITALL ) === FALSE)
-{
-    $errorcode = socket_last_error();
-    $errormsg = socket_strerror($errorcode);
-     
-    die("Could not receive data: [$errorcode] $errormsg \n");
-}
+$ret = "";
+
+while ($ret!=" "):
+$ret = socket_read($sock, PHP_NORMAL_READ);
+echo $ret;
+endwhile;
+
 
 if( ! socket_send ( $sock , "RECD", strlen($message) , 0))
 {
@@ -55,6 +55,9 @@ if( ! socket_send ( $sock , "RECD", strlen($message) , 0))
 echo "Message send successfully \n";
  
 //Now receive reply from server
+echo socket_read($sock, PHP_NORMAL_READ) ;
+
+/*
 if(socket_recv ( $sock , $buf , 14, MSG_WAITALL ) === FALSE)
 {
     $errorcode = socket_last_error();
@@ -64,8 +67,8 @@ if(socket_recv ( $sock , $buf , 14, MSG_WAITALL ) === FALSE)
 }
  
 //print the received message
-echo strlen($buf);
-	
+echo $buf. "\n";
+    
 if( ! socket_send ( $sock , "START", strlen($message) , 0))
 {
     $errorcode = socket_last_error();
@@ -84,30 +87,85 @@ if(socket_recv ( $sock , $buf , 24, MSG_WAITALL ) === FALSE)
      
     die("Could not receive data: [$errorcode] $errormsg \n");
 }
- 
+ /*
 //print the received message
-echo $buf;
+echo $buf. "\n";
+function butt()
+{
+return "RECD";
+}
+$turns =0; 
+while ($turns<10) {
+    
 
-if( ! socket_send ( $sock , "RECD", strlen($message) , 0))
+for ( $i=0; $i<3; $i++)
+{
+if( ! socket_send ( $sock , butt(), strlen(butt()), 0))
 {
     $errorcode = socket_last_error();
     $errormsg = socket_strerror($errorcode);
      
     die("Could not send data: [$errorcode] $errormsg \n");
 }
- 
+
 echo "Message send successfully \n";
- 
+
+switch ($i) {
+     case 0:
+        if(socket_recv ( $sock , $buf ,strlen($buf) +7, MSG_WAITALL ) === FALSE)
+        {
+            $errorcode = socket_last_error();
+            $errormsg = socket_strerror($errorcode);
+     
+            die("Could not receive data: [$errorcode] $errormsg \n");
+        }
+        echo $buf. "\n";
+         break;
+     case 1:
+        if(socket_recv ( $sock , $buf ,strlen($buf) +5, MSG_WAITALL ) === FALSE)
+        {
+            $errorcode = socket_last_error();
+            $errormsg = socket_strerror($errorcode);
+     
+            die("Could not receive data: [$errorcode] $errormsg \n");
+        }
+        echo $buf. "\n";
+         break;
+     case 2:
+        if(socket_recv ( $sock , $buf, strlen($buf)-17, MSG_WAITALL ) === FALSE)
+        {
+            $errorcode = socket_last_error();
+            $errormsg = socket_strerror($errorcode);
+     
+            die("Could not receive data: [$errorcode] $errormsg \n");
+        }
+        echo $buf. "\n";
+        break;
+     default:
+         echo "It broke!";
+         break;
+ } 
 //Now receive reply from server
-if(socket_recv ( $sock , $buf ,20, MSG_WAITALL ) === FALSE)
+/*if(socket_recv ( $sock , $buf ,strlen($buf) +7, MSG_WAITALL ) === FALSE)
 {
     $errorcode = socket_last_error();
     $errormsg = socket_strerror($errorcode);
      
     die("Could not receive data: [$errorcode] $errormsg \n");
 }
+echo $buf. "\n";
 
-
+}
+if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+{
+    $errorcode = socket_last_error();
+    $errormsg = socket_strerror($errorcode);
+     
+    die("Could not send data: [$errorcode] $errormsg \n");
+}
+$turns+=1;
+}
+*/
 
 socket_close($sock);
 ?>
