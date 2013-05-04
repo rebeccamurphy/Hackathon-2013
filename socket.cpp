@@ -23,7 +23,7 @@ int main()
     host_info.ai_socktype = SOCK_STREAM; // Use SOCK_STREAM for TCP or SOCK_DGRAM for UDP.
 
     // Now fill up the linked list of host_info structs with google's address information.
-    status = getaddrinfo(" 67.202.15.69", 19013, &host_info, &host_info_list);
+    status = getaddrinfo("67.202.15.69", 19013, &host_info, &host_info_list);
     // getaddrinfo returns 0 on succes, or some other value when an error occured.
     // (translated into human readable text by the gai_gai_strerror function).
     if (status != 0)  std::cout << "getaddrinfo error" << gai_strerror(status) ;
@@ -42,7 +42,7 @@ int main()
 
 
     std::cout << "send()ing message..."  << std::endl;
-    char *msg = "GET / HTTP/1.1\nhost:  67.202.15.n\69\n";
+    char *msg = "INIT Guffaws";
     int len;
     ssize_t bytes_sent;
     len = strlen(msg);
