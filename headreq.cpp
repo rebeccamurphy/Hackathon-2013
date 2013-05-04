@@ -6,8 +6,9 @@
 #include <iostream>
 
 #define WIN32_MEAN_AND_LEAN
-#include <winsock2.h>
 #include <windows.h>
+
+//#include <winsock2.h>
 
 using namespace std;
 
