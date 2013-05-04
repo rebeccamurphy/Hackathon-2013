@@ -2,43 +2,43 @@ MERRY CHRISMAS YOU HAVE X TRANSACTIONS WITH Z AMOUNT OF SERVERS COMING IN FROM A
 
 on each server number S(i), there are S(i).t transactions already.
 
-for (i = 1, i<= Z, i++) {
-	
-	if (S(i).t + X < 180) then{
-			
-		S(i).t = S(i).t + X;
-		X = 0;
-		BREAK OUT OF LOOP
-			
-	}
-	else {
-		if (i <> Z) {
-			for (j = i+1, j <=Z, j++)
-			{
+i = 1
+
+if (S(i).t + X < 180) then{
 		
-				if (S(j).t + X < 180) then{
-					S(j).t = S(j).t + X;
-					X = 0;
-					BREAK OUT OF LOOP
-				}
-				
-			}
-		}else{
-			for (i, i<=Z, i++){
-			
-				L = (S(i).t + X - 200)  //how many transfers left over
-				S(i) = S(i) + X - L
-				X = L
-				
-				if (X = 0) then{
-				BREAK OUT OF LOOP
-				}
-			}
-		
-			X TRANSFERES ARE LEFT SO YOU MUST DO THE THING
-			
-		}
-	
-	}
+	S(i).t = S(i).t + X;
+	X = 0;
+	BREAK OUT OF LOOP
 		
 }
+else {
+	if (i <> Z) {
+		for (j = i+1, j <=Z, j++)
+		{
+	
+			if (S(j).t + X < 180) then{
+				S(j).t = S(j).t + X;
+				X = 0;
+				BREAK OUT OF LOOP
+			}
+				
+		}
+	}else{
+		for (i, i<=Z, i++){
+		
+			L = (S(i).t + X - 200)  //how many transfers left over
+			S(i) = S(i) + X - L
+			X = L
+			
+			if (X = 0) then{
+				BREAK OUT OF LOOP
+			}
+		}
+	
+		X TRANSFERES ARE LEFT SO YOU MUST DO THE THING
+		
+	}
+
+}
+		
+
