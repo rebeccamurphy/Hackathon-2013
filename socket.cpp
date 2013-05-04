@@ -2,7 +2,8 @@
 #include <cstring>      // Needed for memset
 #include <sys/socket.h> // Needed for the socket functions
 #include <netdb.h>      // Needed for the socket functions
-
+#include <unistd.h>
+#include <netinet/in.h>
 int main()
 {
 
@@ -22,7 +23,7 @@ int main()
     host_info.ai_socktype = SOCK_STREAM; // Use SOCK_STREAM for TCP or SOCK_DGRAM for UDP.
 
     // Now fill up the linked list of host_info structs with google's address information.
-    status = getaddrinfo("hackthon.hopto.org", "19012", &host_info, &host_info_list);
+    status = getaddrinfo(" 67.202.15.69", 19013, &host_info, &host_info_list);
     // getaddrinfo returns 0 on succes, or some other value when an error occured.
     // (translated into human readable text by the gai_gai_strerror function).
     if (status != 0)  std::cout << "getaddrinfo error" << gai_strerror(status) ;
@@ -41,19 +42,19 @@ int main()
 
 
     std::cout << "send()ing message..."  << std::endl;
-    char *msg = "GET / HTTP/1.1\nhost: hackathon.hopto.org\n\n";
+    char *msg = "GET / HTTP/1.1\nhost:  67.202.15.n\69\n";
     int len;
     ssize_t bytes_sent;
     len = strlen(msg);
     bytes_sent = send(socketfd, msg, len, 0);
 
-    std::cout << "Waiting to recieve data..."  << std::endl;
+    std::cout << "Waiting to receive data..."  << std::endl;
     ssize_t bytes_recieved;
     char incomming_data_buffer[1000];
     bytes_recieved = recv(socketfd, incomming_data_buffer,1000, 0);
     // If no data arrives, the program will just wait here until some data arrives.
     if (bytes_recieved == 0) std::cout << "host shut down." << std::endl ;
-    if (bytes_recieved == -1)std::cout << "recieve error!" << std::endl ;
+    if (bytes_recieved == -1)std::cout << "receive error!" << std::endl ;
     std::cout << bytes_recieved << " bytes recieved :" << std::endl ;
     std::cout << incomming_data_buffer << std::endl;
     incomming_data_buffer[bytes_recieved -2] = '\0' ;
