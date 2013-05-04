@@ -2,22 +2,29 @@
 import socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(("hackathon.hopto.org", 19012))
-
 print "CONNECTED SUCCESSFULLY"
 
-sendinit = raw_input ("Type INIT Guffaws: ")
-client_socket.send(sendinit)
+client_socket.send(b'INIT Guffaws')
+print "Okay"
 
-print sendinit
+# Look for the response
+#amount_received = 0
+#amount_expected = 6
+    
+#while amount_received < amount_expected:
+#    data = client_socket.recv(16)
+#    amount_received += len(data)
+#    print >>sys.stderr, 'received "%s"' % data
 
-datainit = client_socket.recv(6) #should be ACCEPT
-
+datainit = client_socket.recv(1024) #should be ACCEPT
 print datainit
 
-sendrecd = raw_input ("TYPE RECD: ")
-client_socket.send(sendrecd)
+#===================================================================
 
-datarecd = client_socket.recv(14) #should be COSTS # # # #
+client_socket.send("")
+print "Okay"
+
+datarecd = client_socket.recv(1024) #should be COSTS # # # #
 
 print datarecd
 
