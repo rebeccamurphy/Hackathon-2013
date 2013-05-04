@@ -34,6 +34,8 @@ byte sequence '216,239,51,100', in that order.
 
 8) Accept
 
+9) send and recv
+
 */
 
 //============================ initialize library ===========================================
@@ -99,7 +101,7 @@ sockAddr2.sin_addr.S_un.S_un_b.s_b2 = 0;
 sockAddr2.sin_addr.S_un.S_un_b.s_b3 = 0;
 sockAddr2.sin_addr.S_un.S_un_b.s_b4 = 1;
 
-//=======================================================================
+//============================== connect =========================================
 
 /* This code assumes a socket has been created and its handle
 is stored in a variable called hSocket*/
@@ -122,7 +124,7 @@ if (connect(hSocket, (sockaddr*)(&sockAddr), sizeof(sockAddr))!=0)
    type. It is safe to cast it since they have the same structure, but the
    compiler naturally sees them as different types.*/
 
-//=======================================================================
+//================================== bind =====================================
 
 sockaddr_in sockAddr;
 
@@ -137,7 +139,7 @@ if (bind(hSocket, (sockaddr*)(&sockAddr), sizeof(sockAddr))!=0)
     // error handling code
 }
 
-//============================== Listen =========================================
+//============================== listen =========================================
 
 /* This code assumes the socket specified by
    hSocket is bound with the bind function */
@@ -147,21 +149,42 @@ if (listen(hSocket, SOMAXCONN)!=0) {
     // error handling code
 }
 
-//============================= Accept ==========================================
+//============================= accept ==========================================
 
 sockaddr_in     remoteAddr;
 int             iRemoteAddrLen;
 SOCKET          hRemoteSocket;
 
 iRemoteAddrLen = sizeof(remoteAddr);
+//                     listening socket, pointer to buffer, pointer to length of prev. pointer's target
 hRemoteSocket = accept(hSocket, (sockaddr*)&remoteAddr, &iRemoteAddrLen);
-if (hRemoteSocket==INVALID_SOCKET)
-{
+
+if (hRemoteSocket==INVALID_SOCKET) {
     // error handling code
 }
 
+//============================== send and recv =========================================
+// THIS IS IN BLOCKING MODE
 
+char buffer[128];
 
+while(true) {
+    // Receive data
+    int bytesReceived = recv(hRemoteSocket, buffer, sizeof(buffer), 0);
+
+    if (bytesReceived==0) { // connection closed 
+        break;
+    }
+    else if (bytesReceived==SOCKET_ERROR) {
+        // error handling code
+    }
+
+    // Send received data back
+    if (send(hRemoteSocket, buffer, bytesReceived, 0)==SOCKET_ERROR)
+    {
+        // error handling code
+    }
+}
 
 
 
