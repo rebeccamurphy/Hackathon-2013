@@ -1,39 +1,40 @@
 Example for NA server woot aw yiss
 
-p = profit per transaction
-t = transactions
-l = proportion dropped due to numbah of transactions
-s = proportion dropped due to switchin teh servahs
-c = cost for server
-n = numbah of serverz
+profitTrans = profit per transaction
+numTrans = transactions
+proportionNumTrans = proportion dropped due to numbah of transactions
+proportionSwitch = proportion dropped due to switchin teh servahs
+serverCost = cost for server
+numServers = numbah of serverz
 
 
-((p*t) + sEU(p*tFROMEU) +sAP(p*tFROMAP))l  + HOWEVERMANYSERVERSINNODESAMETHING... -c*nNA  THENYOUMOTHERFUCKINGREPEATBUTFOREUANDAP
+((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
+ + for each server in the region since the number of people is different... - serverCost * numServersNA  THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP
+
+>
+
+((profitTrans*numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))lossNumTrans 
+ + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
 
 compared to
 
-((p*t) + sEU(p*tFROMEU) +sAP(p*tFROMAP))l  + HOWEVERMANYSERVERSINNODESAMETHING... -c*(nNA + 1) THENSAMETHINGONLYNOT n+1
+((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
+ + for each server in the region since the number of people is different... - serverCost * (numServersEU + 1)
+ 
 
-compared to
 
 MOVE SOME OF THOSE LAZY ASS TRANSACTIONS OVER TO SOME EU SERVERS
 
 compared to
 
-MOVE SOME OF THOSE LAZY ASS TRANSACTIONS OVER TO A NEW EU SERVER YOU MADE HOLY SHIT nEU + 1
-
-compared to
-
 MOVE SOME OF THOSE LAZY ASS TRANSACTIONS OVER TO SOME AP SERVERS THIS TIME
-
-compared to
-
-OH FUCK MOVE SOME OF THOSE LAZY ASS TRANSACTIONS OVER TO A NEW AP SERVER YOU MADE nAP + 1
-
+((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
+ + for each server in the region since the number of people is different... - serverCost * (numServersAp + 1) //only beneficial for java
+ 
 AND THEN YOU DECIDE WHAT TO DO. FORGET ABOUT SHUTTING DOWN SERVERS. ALL THE SERVERS OPEN FOREVER. FOREVERRRRR AHAHAHAHAHAHAHAHAA YEAH.
 
 THIS IS GOING TO BE ANNOYING AS FUCK TO CODE.
-AND THIS DOESN'T EVEN HANDLE HOW TO BALANCE TRANSACTIONS INTO SERVERS IN AN AREA OH HELL NO.
+AND THIS DOESN'T EVEN HANDLE HOW TO BALANCE TRANSACTIONS INTO SERVERS IN AN AREA OH )(-ELL NO.
 
 EXCEPT NOW IT SORTA DOES- OBSERVE:
 For all the servers in an area (ex NA) take transactions -> check if adding will make it go over capacity.
@@ -43,28 +44,6 @@ if all them servers aint up to ship go to what we was doing up top you feel me?
 
 
 java tier- it's like god tier, only more like what's above at the top.
-
-DaTaBaSe TiEr: 
-
-same decision handling for individual servers in an area (ex NA)
-but for the motherfuckin other things...
- 
-To SeE iF yOu ShOuLd OpEn Up TwO mOtHeRfUcKiN sErVeRs (starting from 1 open cuz shit man):
-q = efficiency for multiple servers
-
-((p*t) + sEU(p*tFROMEU) +sAP(p*tFROMAP))l  + HOWEVERMANYSERVERSINNODESAMETHING... -c*(nNA) IF SET UP IN NA,
-
-compared to
-((p*t) + sEU(p*tFROMEU) +sAP(p*tFROMAP))l  + HOWEVERMANYSERVERSINNODESAMETHING... -c*(nNA + 1)
-
-compared to
-
-[((p*t) + sEU(p*tFROMEU) +sAP(p*tFROMAP))l  + HOWEVERMANYSERVERSINNODESAMETHING... -c*(nNA + 1) + SAME FOR ANOTHER SERVER ]*q
-
-I hOpE tHaT mAkEs SeNsE iM kInDa GeTtIn FoGgY :o(
-
-
-
 
 
 
