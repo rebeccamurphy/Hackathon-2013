@@ -9,7 +9,7 @@ import sys
 
 host = 'hackathon.hopto.org'
 port = 19012
-size = 5
+size = 1024
 s = None
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
