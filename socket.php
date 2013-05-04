@@ -75,15 +75,14 @@ $turns = 0;
 while ($turns<2) {
    
 
-for ( $i=0; $i<3; $i++)
-{
-if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
-{
-    $errorcode = socket_last_error();
-    $errormsg = socket_strerror($errorcode);
-     
-    die("Could not send data: [$errorcode] $errormsg \n");
-}
+    for ( $i=0; $i<3; $i++)
+    {
+        if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
+            {
+                $errorcode = socket_last_error();
+                $errormsg = socket_strerror($errorcode);
+                die("Could not send data: [$errorcode] $errormsg \n");
+            }
         $ret = "";
         //"DEMAND MON..."
         $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
@@ -91,10 +90,8 @@ if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
         echo "Message send successfully in loop  \n";
     }
 /*
-
-//Now receive reply from server
+This part is where we would reference another function to do how we should control the game.
 */
-
 if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
 {
     $errorcode = socket_last_error();
@@ -102,13 +99,13 @@ if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0
      
     die("Could not send data: [$errorcode] $errormsg \n");
 }
+//This should return PROFIT and and another turn.
 $ret = "";
-        //"DEMAND MON..."
 $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
 echo $ret . "\n";
 $turns+=1;
-}
 
+}
 
 socket_close($sock);
 ?>
