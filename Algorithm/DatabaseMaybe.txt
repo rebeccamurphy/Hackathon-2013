@@ -17,8 +17,8 @@ if (transactionsOnServer > 1200) then
 MakeAnotherServerFunction:
 
 	//Must check traffic from all areas. Is one java server area getting more traffic then the others?
-												If ^that's trending, compare profits of opening 2 servers compared to opening just 1.
-												Decide to open 2 or one.
+				If ^that's trending, compare profits of opening 2 servers compared to opening just 1.
+				Decide to open 2 or one.
 												
 												
 TakeDownServerFucnction:
