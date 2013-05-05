@@ -1,0 +1,12 @@
+database checkin txt it
+
+
+FIRSTIES
+
+if we iz approaching 12 we look at opening another server compared to the below stuff, which we should check periodically anyways.
+
+-We check where things are coming in from.
+	1( Is it more profitable to open the database in another region?
+	2( is it more profitable to have some combination of databases across 2 regions?
+	3( IT IS NEVER PROFITABLE TO OPEN 3 DATABASES AHHHHHHHHHHH
+
