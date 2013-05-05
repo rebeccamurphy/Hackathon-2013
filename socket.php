@@ -14,7 +14,7 @@ if(!($sock = socket_create(AF_INET, SOCK_STREAM, 0)))
  
 echo "Socket created";
 
-if(!socket_connect($sock , '67.202.15.69' , 19013))
+if(!socket_connect($sock , '67.202.15.69' , 19012))
 {
     $errorcode = socket_last_error();
     $errormsg = socket_strerror($errorcode);
@@ -55,7 +55,7 @@ echo "Message send successfully \n";
 $ret = ""; 
 $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
 echo $ret ."\n";
-print_r (convert($ret)); 
+ 
 //STARTS TEH GAME
     
 if( ! socket_send ( $sock , "START", strlen("START") , 0))
@@ -71,7 +71,7 @@ echo "Message send successfully \n";
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while ($ret != "END" ) {
+while ($turns< 3 ) {
    
 
     for ( $i=0; $i<3; $i++)
