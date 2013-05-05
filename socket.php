@@ -21,7 +21,7 @@ if(!($sock = socket_create(AF_INET, SOCK_STREAM, 0)))
  
 echo "Socket created";
 
-if(!socket_connect($sock , '67.202.15.69' , 19012))
+if(!socket_connect($sock , '67.202.15.69' , 19013))
 {
     $errorcode = socket_last_error();
     $errormsg = socket_strerror($errorcode);
@@ -143,8 +143,8 @@ while (true) {
 This part is where we would reference another function to do how we should control the game.
 */
 //Mega($CONFIG,$COSTS,$DEMAND,$DIST);
-//if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
-if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST, $turns), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST,$turns)), 0))
+if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+//if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST, $turns), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST,$turns)), 0))
 
 {
     $errorcode = socket_last_error();
@@ -164,7 +164,6 @@ if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
      
     die("Could not send data: [$errorcode] $errormsg \n");
 }
-print_r ($cumprofarray);
 socket_close($sock);
-echo $turns ."\n";
+echo " and that's the end good day. \n";
 ?>

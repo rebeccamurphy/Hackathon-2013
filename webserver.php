@@ -97,13 +97,23 @@ for($i=0; $i<6; $i++){				//starting at the beginning of the CONFIG array
     
     }
 
-if (fmod($turns,576) ===0 )
+switch($turns)
+
 {
-	$numDataSTEU = 1;
-}
-else	
-{
-	$numDataSTEU = 0;
+	case 576: $numDataSTEU =1;
+				break;
+	case 1152: 	$numDataSTEU =1;
+				break;		
+	case 1728: $numDataSTEU =1;
+				break;
+	case 2304: 	$numDataSTEU =1;
+				break;
+	case 2880: 	$numDataSTEU =1;
+				break;
+	default: $numDataSTEU =0;
+				break;
+
+
 }
 return $contstr . $numDataServersNA . " " . $numDataSTEU . " " .$numDataServersAP;
 
