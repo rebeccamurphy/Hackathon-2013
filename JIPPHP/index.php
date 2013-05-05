@@ -16,8 +16,8 @@ require ('gChart.php');
 $data_arr = array(); //will contain all the values we need to display, used in addDataSet
 //$data_arr = array_fill(0, 20, 15000); //for now, initializes data_arr to have 20 instances of 15000
 
-// 25 elements: 100, 200, 300, ... 2400
-for ($iii=0; $iii<25; $iii++) {
+// 25 elements: 100, 200, 300, ... 1400
+for ($iii=0; $iii<15; $iii++) {
 	$data_arr[$iii] = ($iii * 100);
 }
 
