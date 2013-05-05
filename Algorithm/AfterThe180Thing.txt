@@ -1,0 +1,107 @@
+//This doesn't do price handling yet, it's sorting what goes where when moving stuff over to servers.
+
+So there is X transactions left in region R(1) (for example). Other two regions = R(2), R(3)  1 = NA, 2 = EU and 3 = AP in array
+You change whether you're using R(1), R(2), R(3)
+S(i) = A server in an R
+
+
+profitTrans = profit per transaction
+numTrans = transactions separate from X
+proportionNumTrans = proportion not dropped due to numbah of transactions
+proportionSwitch = proportion not dropped due to switchin teh servahs
+serverCost = cost for server
+numServers = numbah of serverz
+
+i = 1	
+
+if (R(2).S(i).numTrans + X < 180){
+	
+	R(2).S(i).numTrans = R(2).S(i).numTrans + X;
+	X = 0;
+	BREAK OUT OF LOOP
+}
+else {
+
+	if (i <> R(2).numServers){
+			
+		for (j = i+1, j <=R(2).numServers, j++)
+	{
+
+		if (R(2).S(j).numTrans + X < 180) then{
+			S(j).t = S(j).t + X;
+			X = 0;
+			BREAK OUT OF LOOP
+		}
+		
+		}
+			
+	}else{
+	
+		for (i, i<=R(2).numServers, i++){
+	
+			L = (R(2).S(i).numTrans + X - 200)  //how many transfers left over
+			R(2).S(i).numTrans = R(2)S(i).numTrans + X - L
+			X = L
+		
+			if (X = 0) then{
+				BREAK OUT OF LOOP
+			}
+		
+		}
+	}
+	// NEEDS A WAY TO KEEP TRACK OF HOW MANY WERE TRANSFERED FROM R(1) TO R(2) FOR PRICE COMPARISONS LATER USING SOME PARTS OF WHATISMYLIFE CODE
+	
+	if (X != 0){
+	
+		i = 1	
+
+		if (R(2).S(i).numTrans + X < 180){
+		
+			R(2).S(i).numTrans = R(2).S(i).numTrans + X;
+			X = 0;
+			BREAK OUT OF LOOP
+		}
+		else {
+
+			if (i <> R(2).numServers){
+				
+				for (j = i+1, j <=R(2).numServers, j++)
+			{
+	
+				if (R(2).S(j).numTrans + X < 180) then{
+					S(j).t = S(j).t + X;
+					X = 0;
+					BREAK OUT OF LOOP
+				}
+		
+				}
+			
+			}else{
+	
+				for (i, i<=R(2).numServers, i++){
+	
+					L = (R(2).S(i).numTrans + X - 200)  //how many transfers left over
+					R(2).S(i).numTrans = R(2)S(i).numTrans + X - L
+					X = L
+			
+					if (X = 0) then{
+						BREAK OUT OF LOOP
+					}
+			
+				}
+			}
+			// NEEDS A WAY TO KEEP TRACK OF HOW MANY WERE TRANSFERED FROM R(1) TO R(3) FOR PRICE COMPARISONS LATER USING SOME PARTS OF WHATISMYLIFE CODE
+	
+			if (X != 0){
+					//THEN A NEW SERVER DEFINITITELY NEEDS TO ME MADE I'M PRETTY SURE, EVERYWHERE IS PRETTY DAMN FULL
+			}
+		}
+
+	}
+}
+
+//AND THEN THIS GETS COMPARED TO THE SAME THING, ONLY USE R(3) FIRST THEN R(2)
+
+//THEN WE START DOING PRICE COMPARISION FOR R(1)-->R(2)-->R(3), R(1)-->R(3)-->R(2), AND MAKING A NEW SERVER IN R(1)
+
+

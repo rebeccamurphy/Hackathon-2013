@@ -27,7 +27,7 @@ else {
 		for (i, i<=Z, i++){
 		
 			L = (S(i).t + X - 200)  //how many transfers left over
-			S(i) = S(i) + X - L
+			S(i).t = S(i).t + X - L
 			X = L
 			
 			if (X = 0) then{
