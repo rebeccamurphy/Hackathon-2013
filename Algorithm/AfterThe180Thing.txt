@@ -55,20 +55,20 @@ else {
 	
 		i = 1	
 
-		if (R(2).S(i).numTrans + X < 180){
+		if (R(3).S(i).numTrans + X < 180){
 		
-			R(2).S(i).numTrans = R(2).S(i).numTrans + X;
+			R(3).S(i).numTrans = R(2).S(i).numTrans + X;
 			X = 0;
 			BREAK OUT OF LOOP
 		}
 		else {
 
-			if (i <> R(2).numServers){
+			if (i <> R(3).numServers){
 				
-				for (j = i+1, j <=R(2).numServers, j++)
+				for (j = i+1, j <=R(3).numServers, j++)
 			{
 	
-				if (R(2).S(j).numTrans + X < 180) then{
+				if (R(3).S(j).numTrans + X < 180) then{
 					S(j).t = S(j).t + X;
 					X = 0;
 					BREAK OUT OF LOOP
