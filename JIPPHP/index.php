@@ -14,7 +14,7 @@ require ('gChart.php');
  * x-axis, and the corresponding revenue at that time will be the y value.
  */
 $data_arr = array(); //will contain all the values we need to display, used in addDataSet
-$data_arr = array_fill(0, 1000, 5000); //for now, initializes data_arr to have the number 5000 a bunch of times
+$data_arr = array_fill(0, 10, 5000); //for now, initializes data_arr to have the number 5000 a bunch of times
 
 $x_axis_range_min = 0;    //first turn
 $x_axis_range_max = 3000; //last turn + 20 for good measure
