@@ -1,12 +1,12 @@
 //This doesn't do price handling yet, it's sorting what goes where when moving stuff over to servers.
 
-So there is X transactions left in region R(1) (for example). Other two regions = R(2), R(3)  1 = NA, 2 = EU and 3 = AP in array
+So there are X transactions left in region R(1) (for example). Other two regions = R(2), R(3)  1 = NA, 2 = EU and 3 = AP in array
 You change whether you're using R(1), R(2), R(3)
 S(i) = A server in an R
 
 
 profitTrans = profit per transaction
-numTrans = transactions separate from X
+numTrans = transactions already in place, does not include X
 proportionNumTrans = proportion not dropped due to numbah of transactions
 proportionSwitch = proportion not dropped due to switchin teh servahs
 serverCost = cost for server
@@ -14,21 +14,21 @@ numServers = numbah of serverz
 
 i = 1	
 
-if (R(2).S(i).numTrans + X < 180){
-	
-	R(2).S(i).numTrans = R(2).S(i).numTrans + X;
+if (R(2).S(i).numTrans + X < 180){						//checks the first server in the second region (EU) and checks if we can add the transitions
+														//without exceeding 180
+	R(2).S(i).numTrans = R(2).S(i).numTrans + X;		//if we aren't going to exceed 180, then add the transactions to the server
 	X = 0;
 	BREAK OUT OF LOOP
 }
-else {
+else {													//if we are going to exceed 180, then:
 
-	if (i <> R(2).numServers){
+	if (i != R(2).numServers){							//make sure we are not on the last server of the region
 			
-		for (j = i+1, j <=R(2).numServers, j++)
+		for (j = i+1, j <= R(2).numServers, j++)		//start at the second server
 	{
 
-		if (R(2).S(j).numTrans + X < 180) then{
-			S(j).t = S(j).t + X;
+		if (R(2).S(j).numTrans + X < 180) then{			//check if we can add transactions to that server without exceeding 180
+			S(j).t = S(j).t + X;						//if we can then add them
 			X = 0;
 			BREAK OUT OF LOOP
 		}
@@ -37,7 +37,7 @@ else {
 			
 	}else{
 	
-		for (i, i<=R(2).numServers, i++){
+		for (i, i<=R(2).numServers, i++){		//starting at the first server, we attempt to put a few more transactions into each server, up to 200
 	
 			L = (R(2).S(i).numTrans + X - 200)  //how many transfers left over
 			R(2).S(i).numTrans = R(2)S(i).numTrans + X - L
@@ -57,13 +57,13 @@ else {
 
 		if (R(3).S(i).numTrans + X < 180){
 		
-			R(3).S(i).numTrans = R(2).S(i).numTrans + X;
+			R(3).S(i).numTrans = R(2).S(i).numTrans + X;		//goes to the next region and repeats
 			X = 0;
 			BREAK OUT OF LOOP
 		}
 		else {
 
-			if (i <> R(3).numServers){
+			if (i != R(3).numServers){
 				
 				for (j = i+1, j <=R(3).numServers, j++)
 			{
