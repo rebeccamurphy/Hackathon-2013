@@ -8,7 +8,13 @@ require ('gChart.php');
 ?>
 <h2>Line Chart</h2>
 <?php
-$data_arr = ()()()()(); //will contain all the values we need to display: used in addDataSet
+/**
+ * This is a line graph intended to show the progression of profits across
+ * the span of the game. Each turn (probably fewer) will be an entry into the
+ * x-axis, and the corresponding revenue will be the y value.
+ */
+$data_arr = array(); //will contain all the values we need to display, used in addDataSet
+array_push($data_arr, 1, 2, 3, 4, 5, 6, 7, 8, 9); //for now, initializes data_arr to have the numbers 1-9
 
 $lineChart = new gLineChart(300,300);
 $lineChart->addDataSet($data_arr);
@@ -17,9 +23,11 @@ $lineChart->addDataSet($data_arr);
 $lineChart->setLegend(array("Profits"));
 $lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y'));
-$lineChart->setDataRange(30,400);
+$lineChart->setDataRange(0,3000); //IDK IF THIS IS FOR ONE AXIS OR BOTH
 $lineChart->addAxisRange(0, 1, 4, 1); //PARAMETERS: axis index, start value, end value, count between steps on axis (opt.)
 $lineChart->addAxisRange(1, 30, 400);
+$lineChart->addAxisLabel(0, array("Turn"));
+$lineChart->addAxisLabel(1, array("Profits"));
 $lineChart->addBackgroundFill('bg', 'EFEFEF'); //PARAMETERS: part of chart being filled, color
 $lineChart->addBackgroundFill('c', '000000');
 ?>
@@ -35,6 +43,5 @@ $lineChart->addBackgroundFill('c', '000000');
 <p>
 <img src="img.php?width=300&amp;height=200&amp;post=true" />
 </p>
-
 </body>
 </html>
