@@ -86,9 +86,9 @@ for($i=0; $i<9; $i++){				//starting at the beginning of the CONFIG array
             if($CONFIG[$i]<=1){
                 $control[$i]=1;
             }
-            //else{
-            //    $control[$i]=-1;
-            //}
+            else{
+                $control[$i]=0;
+            }
 
 	$contstr .= $control[$i] . " " ;              
     
