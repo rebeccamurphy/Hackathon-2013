@@ -41,7 +41,13 @@ class WebServer{
 			return shouldSwitch;
 		}
 		void fillServer(int newTrans){
-			i = 1;
+		}
+		void profitable(){
+			WebServer server[];
+			for(int k=0; k<=numServers; k++){
+				server[k].numTrans=numTrans;
+			}
+			int i = 0;
 			int leftOver;
 			if (server(i).numTrans + newTrans < 180) then{		//if the current transaction number + the transactions to be added are under 180 then
 				server(i).numTrans += newTrans;					//add the transactions to the server
