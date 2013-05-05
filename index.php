@@ -5,8 +5,10 @@
 </head>
 
 <body>
-<?php include 'transfer.php' ?>
-<?php include 'socket.php' ?>
+<?php
+//include 'convert.php'
+include 'socket.php'
+?>
 
 <?php
     echo "<textarea name='mydata'>\n";
