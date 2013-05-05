@@ -74,21 +74,7 @@ else {
 					BREAK OUT OF LOOP
 				}
 		
-				}
 			
-			}else{
-	
-				for (i, i<=R(2).numServers, i++){
-	
-					L = (R(2).S(i).numTrans + X - 200)  //how many transfers left over
-					R(2).S(i).numTrans = R(2)S(i).numTrans + X - L
-					X = L
-			
-					if (X = 0) then{
-						BREAK OUT OF LOOP
-					}
-			
-				}
 			}
 			// NEEDS A WAY TO KEEP TRACK OF HOW MANY WERE TRANSFERED FROM R(1) TO R(3) FOR PRICE COMPARISONS LATER USING SOME PARTS OF WHATISMYLIFE CODE
 	
