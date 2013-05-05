@@ -31,6 +31,7 @@ $lineChart->addBackgroundFill('c', '000000');
 ?>
 <img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class.
 
+<!---
 <h1>PHP Wrapper for Google Chart API - Serverside Rendering - 0.1</h1>
 <h3>URL Request</h3>
 For the image below, post=false
@@ -43,5 +44,7 @@ For the image below, post=true
 <p>
 <img src="img.php?width=300&amp;height=200&amp;post=true" />
 </p>
+-->
+
 </body>
 </html>
