@@ -16,6 +16,8 @@
 // + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
 class WebServer{
 	protected:
+		const int proportionSwitchNaEu=0.7
+		const int proportionSwitchAP=0.5
 		int serverCost;											//cost of the server
 		int numTrans;											//number of transactions currently in the object
 
@@ -28,9 +30,14 @@ class WebServer{
 		void turnOn();											//this is entirely reliant on how we get info
 		void turnOff();											//and send it back to the game
 		bool isProfit(){
-
+			int totalprofit;
+			for(int i=1; i<=numServers; i++){
+				totalprofit+=(((profitTrans * server(i).numTrans) + proportionSwitchNaEu(profitTrans*server(i).numTrans/*FROMEU*/) + proportionSwitchAP(profitTrans*server(i).numTrans/*FROMAP*/))proportionNumTrans;
+			}
+			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) THEN SAME THING ONLY NOT n+1
+			return shouldSwitch;
 		}
-		int fillServer(int newTrans){
+		void fillServer(int newTrans){
 			i = 1
 			int leftOver;
 			if (server(i).numTrans + newTrans < 180) then{		//if the current transaction number + the transactions to be added are under 180 then
@@ -50,22 +57,26 @@ class WebServer{
 						}
 
 					}
-				}else{
+				}
+				else{
 					for (i; i<=numServers; i++){
 
 						leftOver = server(i).numTrans + newTrans - 200;  //how many transfers left over
-						server(i).numTrans = server(i).numTrans + newTrans - leftOver;
+						server(i).numTrans += newTrans - leftOver;
 						newTrans = leftOver;
 
 						if (newTrans = 0) then{
 							break;
 						}
 					}
-
-					newTrans TRANSFERES ARE LEFT SO YOU MUST DO THE THING
-
+					//DO THING HERE
+					((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
+ + for each server in the region since the number of people is different... - serverCost * numServersNA  THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP > ((profitTrans*numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))lossNumTrans 
+ + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
 				}
-
-			}
+			}	
 		}
+																	//now what do we do?  Well, we have to decide what is the most profitable...
+																	//newTrans transactions are left to take care of and all the servers on the same region are full
+
 
