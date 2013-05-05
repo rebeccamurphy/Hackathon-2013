@@ -21,7 +21,7 @@ switch($dummy[0]){
 		}
 	case "DEMAND":
 		{
-			for ($i =2; $i< count($dummy); $i++)
+			for ($i =1; $i< count($dummy); $i++)
 				{ // Costs, config, DIST
 					array_push($param, intval($dummy[$i]));
 				}	

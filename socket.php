@@ -54,7 +54,7 @@ echo "Message send successfully \n";
 //"COSTS 9 3 6 15"
 $COSTS = socket_read($sock, 1024, PHP_BINARY_READ);   
 echo $COSTS ."\n";
-echo "Message send successfully in loop  \n";
+
 $COSTS = convert($COSTS);
 //STARTS TEH GAME
     
@@ -72,7 +72,7 @@ echo "Message send successfully \n";
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while (true) {
+while ($turns<3) {
 
 
     //im just going to hard code these. its the easiest way
