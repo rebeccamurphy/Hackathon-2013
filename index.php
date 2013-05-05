@@ -6,7 +6,7 @@
 <?php
 require ('gChart.php');
 ?>
-<h2>Line Chart</h2>
+<h2 align=center>Line Chart</h2>
 <?php
 /**
  * This is a line graph intended to show the progression of profits across
@@ -36,7 +36,7 @@ $lineChart->addAxisLabel(0, array("Turn"));
 $lineChart->addAxisLabel(1, array("Profits"));
 //PARAMETERS below: part of chart being filled, color
 $lineChart->addBackgroundFill('bg', 'c4e53a');
-$lineChart->addBackgroundFill('c', 'FFFFFF');
+$lineChart->addBackgroundFill('c', '000000');
 ?>
 <img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class.
 
