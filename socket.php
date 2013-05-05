@@ -128,12 +128,14 @@ while (true) {
         echo $ret . "\n";
         $PROFIT= convert($ret);
 
-array_push($cumprofarray, $PROFIT[2]);        
-    
+
 /*
 This part is where we would reference another function to do how we should control the game.
 */
-if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+//Mega($CONFIG,$COSTS,$DEMAND,$DIST);
+//if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST)), 0))
+
 {
     $errorcode = socket_last_error();
     $errormsg = socket_strerror($errorcode);

@@ -78,131 +78,26 @@ $numDataSTAP = $DIST[8];
 
 
 
-{
-	if ($hour > 9 and $hour <12 and $numWebSTNA <180 and ($min===0 or $min ===30))
-		{
-		 $numWebServersNA +=5;
-		 $numJavaServersNA +=3;
-		 $numDataSTNA = 1;
-		 $numDataSTEU =0;
-		 $numDataSTAP =0;
-		 $numWebServersAP -=2;
-		 $numJavaServersAP -=1;	
-		}
-	if ($hour > 14 and $hour <20 and $numWebSTEU <180 and ($min===0 or $min ===30))
-		{
-		 $numWebServersNA -=2;
-		 $numJavaServersNA -=1;
-		 $numWebServersEU +=3;
-		 $numJavaServersEU +=2; 
-		 $numDataSTNA = 1;
-		 $numDataSTEU =0;
-		 $numDataSTAP =0;
-		}
-	if 	($hour> 16 and $hour < 21 and $numWebServersAP<180 and ($min===0 or $min ===30))
-		{
-		 $numWebServersEU -=2;
-		 $numJavaServersEU -=1;
-		 $numWebServersAP +=4;
-		 $numJavaServersAP +=2; 
-		 $numDataSTNA = 1;
-		 $numDataSTEU =0;
-		 $numDataSTAP =0;
-		}
+$control = array();
+$contstr = "CONTROL ";                     //this array will contain what we're giving back to the game to turn servers on/off
+    
+for($i=0; $i<9; $i++){				//starting at the beginning of the CONFIG array
+        		
+            if($CONFIG[$i]<=1){
+                $control[$i]=1;
+            }
+            //else{
+            //    $control[$i]=-1;
+            //}
+
+	$contstr .= $control[$i] . " " ;              
+    
+    }
+
+
+
+return $contstr;
 }
 
-/*function isprofit()
-{
-// per web server 
 
-}
-*/
-
-return "CONTROL " . $numWebServersNA ." " . $numWebServersEU ." " . $numWebServersAP . " ". $numJavaServersNA . " ". $numJavaServersEU ." " .$numJavaServersAP ." " 
-. $numDataServersNA ." " . $numDataServersEU." ". $numDataServersAP;
-
-}
-//Let's say we're deciding between transferring a client over to
-//another server, or turning a server on in his most local region
-//Example: Tranferring client to EU from NA, or turning on NA server
-//on webserver tier
-
-
-//let's assume that we got the information and it's parsed and stored
-//in variables of some sort?
-//((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
-//+ for each server in the region since the number of people is different... - serverCost * numServersNA
-//the repeat for eu or ap
-
-//>
-
-//((profitTrans*numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))lossNumTrans
-// + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
-/*class WebServer{
-	protected:
-		const $proportionSwitchNaEu=0.7;						//70% of people left after switching them to/from EU to/from NA
-		const $proportionSwitchAP=0.5;						//Same for AP
-		
-		$serverCost;											//cost of the server
-		$numTrans;											//number of transactions currently in the object
-
-	
-		
-	public 	function turnOn();											//this is entirely reliant on how we get info
-	public 	function turnOff();											//and send it back to the game
-		
-	public  function isProfit(){
-			$totalprofit;
-			for($i=1; $i<=numServers; $i++){
-				totalprofit+=(((profitTrans * server(i).numTrans) + proportionSwitchNaEu(profitTrans*server(i).numTrans/*FROMEU*/ /*) + proportionSwitchAP(profitTrans*server(i).numTrans/*FROMAP*/ /*))proportionNumTrans;
-			}
-			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ /*> totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
-		/*	return shouldSwitch;
-		}
-	public  function fillServer(int newTrans){
-			i = 1;
-			int leftOver;
-			if (server(i).numTrans + newTrans < 180) then{		//if the current transaction number + the transactions to be added are under 180 then
-				server(i).numTrans += newTrans;					//add the transactions to the server
-				newTrans = 0;
-				break;
-
-			}
-			else {
-				if (i != numServers) {	//if the current server is not the last one (doesn't equal the total number of servers)
-					for (j = i+1; j <=numServers; j++)		//starting at the next server
-					{
-						if (server(j).numTrans + newTrans < 180){	//if adding the transactions will not exceed 180
-							server(j).numTrans = server(j).numTrans + newTrans;		//then add them broski
-							newTrans = 0;
-							break;
-						}
-
-					}
-				}
-				else{
-					for (i; i<=numServers; i++){
-
-						leftOver = server(i).numTrans + newTrans - 200;  //how many transfers left over
-						server(i).numTrans += newTrans - leftOver;
-						newTrans = leftOver;
-
-						if (newTrans = 0) then{
-							break;
-						}
-					}
-					//DO THING HERE
-					if(!isProfit()){
-						server.turnOn();
-					}
-					else
-						/*switch transactions to another region*/
-					/*	
-				}
-			}	
-		}
-																	//now what do we do?  Well, we have to decide what is the most profitable...
-																	//newTrans transactions are left to take care of and all the servers on the same region are full
-}
-*/
 ?>
