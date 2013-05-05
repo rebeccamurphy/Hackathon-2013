@@ -1,5 +1,5 @@
 <?php
-
+include 'convert.php';
 $sock = socket_create(AF_INET, SOCK_STREAM, 0);
 $ip_address = gethostbyname("hackathon.hopto.org");
 //lines 1-25 creates and establishes the connection. 26-76 sends messages to start game. 
@@ -55,7 +55,7 @@ echo "Message send successfully \n";
 $ret = ""; 
 $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
 echo $ret ."\n";
- 
+print_r (convert($ret)); 
 //STARTS TEH GAME
     
 if( ! socket_send ( $sock , "START", strlen("START") , 0))
@@ -68,11 +68,10 @@ if( ! socket_send ( $sock , "START", strlen("START") , 0))
  
 echo "Message send successfully \n";
  
-
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while ($turns<2) {
+while ($ret != "END" ) {
    
 
     for ( $i=0; $i<3; $i++)
@@ -85,7 +84,7 @@ while ($turns<2) {
             }
         $ret = "";
         //"DEMAND MON..."
-        $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
+        $ret = socket_read($sock, 1024, PHP_BINARY_READ);   
         echo $ret ."\n";
         echo "Message send successfully in loop  \n";
     }
@@ -104,7 +103,14 @@ $ret = "";
 $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
 echo $ret . "\n";
 $turns+=1;
+}
 
+if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
+{
+    $errorcode = socket_last_error();
+    $errormsg = socket_strerror($errorcode);
+     
+    die("Could not send data: [$errorcode] $errormsg \n");
 }
 
 socket_close($sock);
