@@ -37,7 +37,7 @@ class WebServer{
 			for(int i=1; i<=numServers; i++){
 				totalprofit+=(((profitTrans * server[i].numTrans) + proportionSwitchNaEu(profitTrans*server[i].numTrans/*FROMEU*/) + proportionSwitchAP(profitTrans*server[i].numTrans/*FROMAP*/))proportionNumTrans;
 			}
-			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
+			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
 			return shouldSwitch;
 		}
 		void fillServer(int newTrans){
@@ -80,9 +80,9 @@ class WebServer{
 						}
 					}
 					//DO THING HERE
-					if (R(2).S(i).numTrans + X < 180){						//checks the first server in the second region (EU) and checks if we can add the transitions
+					if (R(2).server[i].numTrans + X < 180){						//checks the first server in the second region (EU) and checks if we can add the transitions
 																			//without exceeding 180
-						R(2).S(i).numTrans = R(2).S(i).numTrans + X;		//if we aren't going to exceed 180, then add the transactions to the server
+						R(2).server[i].numTrans = R(2).server[i].numTrans + X;		//if we aren't going to exceed 180, then add the transactions to the server
 						X = 0;
 						BREAK OUT OF LOOP
 					}
@@ -93,8 +93,8 @@ class WebServer{
 							for (j = i+1, j <= R(2).numServers, j++)		//start at the second server
 						{
 
-							if (R(2).S(j).numTrans + X < 180) then{			//check if we can add transactions to that server without exceeding 180
-								S(j).t = S(j).t + X;						//if we can then add them
+							if (R(2).server[j].numTrans + X < 180) then{			//check if we can add transactions to that server without exceeding 180
+								server[j].t = server[j].t + X;						//if we can then add them
 								X = 0;
 								BREAK OUT OF LOOP
 							}
@@ -105,8 +105,8 @@ class WebServer{
 						
 							for (i, i<=R(2).numServers, i++){		//starting at the first server, we attempt to put a few more transactions into each server, up to 200
 						
-								L = (R(2).S(i).numTrans + X - 200)  //how many transfers left over
-								R(2).S(i).numTrans = R(2)S(i).numTrans + X - L
+								L = (R(2).server[i].numTrans + X - 200)  //how many transfers left over
+								R(2).server[i].numTrans = R(2)server[i].numTrans + X - L
 								X = L
 							
 								if (X = 0) then{
@@ -121,9 +121,9 @@ class WebServer{
 						
 							i = 1	
 
-							if (R(3).S(i).numTrans + X < 180){
+							if (R(3).server[i].numTrans + X < 180){
 							
-								R(3).S(i).numTrans = R(2).S(i).numTrans + X;		//goes to the next region and repeats
+								R(3).server[i].numTrans = R(2).server[i].numTrans + X;		//goes to the next region and repeats
 								X = 0;
 								BREAK OUT OF LOOP
 							}
@@ -134,8 +134,8 @@ class WebServer{
 									for (j = i+1, j <=R(3).numServers, j++)
 								{
 						
-									if (R(3).S(j).numTrans + X < 180) then{
-										S(j).t = S(j).t + X;
+									if (R(3).server[j].numTrans + X < 180) then{
+										server[j].t = server[j].t + X;
 										X = 0;
 										BREAK OUT OF LOOP
 									}
