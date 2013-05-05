@@ -1,7 +1,12 @@
 <?php
 include 'convert.php';
+include 'webserver.php';
 $sock = socket_create(AF_INET, SOCK_STREAM, 0);
 $ip_address = gethostbyname("hackathon.hopto.org");
+$cumprofarray= array();
+$percentlast = array();
+$percentmaxlast = array();
+$percentmaxpos = array();
 //lines 1-25 creates and establishes the connection. 26-76 sends messages to start game. 
 //line 54-57 deal with the first COSTS we get back.
 if(!($sock = socket_create(AF_INET, SOCK_STREAM, 0)))
@@ -72,8 +77,7 @@ echo "Message send successfully \n";
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while ($turns<3) {
-
+while (true) {
 
     //im just going to hard code these. its the easiest way
 
@@ -124,7 +128,7 @@ while ($turns<3) {
         echo $ret . "\n";
         $PROFIT= convert($ret);
 
-        
+array_push($cumprofarray, $PROFIT[2]);        
     
 /*
 This part is where we would reference another function to do how we should control the game.
@@ -150,5 +154,5 @@ if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
 }
 
 socket_close($sock);
-echo "IT HAS BEEN DONE."
+echo $turns ."\n";
 ?>

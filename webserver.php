@@ -53,7 +53,7 @@ $numTransEU = $DEMAND[5];
 $numTransAP = $DEMAND[6];
 
 // DIST number of sucessful transactions over a region.
-$
+
 //W.na number of  sucessful transactions webservers in NA
 $numWebSTNA = $DIST[0];
 //W.eu number of sucessful transactions webservers  in EU
@@ -77,20 +77,51 @@ $numDataSTEU = $DIST[7];
 $numDataSTAP = $DIST[8];
 
 
-function time()
+
 {
-	if ($hour > 9 and $hour <)
+	if ($hour > 9 and $hour <12 and $numWebSTNA <180 and ($min===0 or $min ===30))
+		{
+		 $numWebServersNA +=5;
+		 $numJavaServersNA +=3;
+		 $numDataSTNA = 1;
+		 $numDataSTEU =0;
+		 $numDataSTAP =0;
+		 $numWebServersAP -=2;
+		 $numJavaServersAP -=1;	
+		}
+	if ($hour > 14 and $hour <20 and $numWebSTEU <180 and ($min===0 or $min ===30))
+		{
+		 $numWebServersNA -=2;
+		 $numJavaServersNA -=1;
+		 $numWebServersEU +=3;
+		 $numJavaServersEU +=2; 
+		 $numDataSTNA = 1;
+		 $numDataSTEU =0;
+		 $numDataSTAP =0;
+		}
+	if 	($hour> 16 and $hour < 21 and $numWebServersAP<180 and ($min===0 or $min ===30))
+		{
+		 $numWebServersEU -=2;
+		 $numJavaServersEU -=1;
+		 $numWebServersAP +=4;
+		 $numJavaServersAP +=2; 
+		 $numDataSTNA = 1;
+		 $numDataSTEU =0;
+		 $numDataSTAP =0;
+		}
 }
 
-function isprofit()
+/*function isprofit()
 {
 // per web server 
 
 }
+*/
 
+return "CONTROL " . $numWebServersNA ." " . $numWebServersEU ." " . $numWebServersAP . " ". $numJavaServersNA . " ". $numJavaServersEU ." " .$numJavaServersAP ." " 
+. $numDataServersNA ." " . $numDataServersEU." ". $numDataServersAP;
 
-
-
+}
 //Let's say we're deciding between transferring a client over to
 //another server, or turning a server on in his most local region
 //Example: Tranferring client to EU from NA, or turning on NA server
@@ -107,7 +138,7 @@ function isprofit()
 
 //((profitTrans*numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))lossNumTrans
 // + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
-class WebServer{
+/*class WebServer{
 	protected:
 		const $proportionSwitchNaEu=0.7;						//70% of people left after switching them to/from EU to/from NA
 		const $proportionSwitchAP=0.5;						//Same for AP
@@ -123,10 +154,10 @@ class WebServer{
 	public  function isProfit(){
 			$totalprofit;
 			for($i=1; $i<=numServers; $i++){
-				totalprofit+=(((profitTrans * server(i).numTrans) + proportionSwitchNaEu(profitTrans*server(i).numTrans/*FROMEU*/) + proportionSwitchAP(profitTrans*server(i).numTrans/*FROMAP*/))proportionNumTrans;
+				totalprofit+=(((profitTrans * server(i).numTrans) + proportionSwitchNaEu(profitTrans*server(i).numTrans/*FROMEU*/ /*) + proportionSwitchAP(profitTrans*server(i).numTrans/*FROMAP*/ /*))proportionNumTrans;
 			}
-			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
-			return shouldSwitch;
+			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ /*> totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
+		/*	return shouldSwitch;
 		}
 	public  function fillServer(int newTrans){
 			i = 1;
@@ -166,11 +197,12 @@ class WebServer{
 					}
 					else
 						/*switch transactions to another region*/
-						
+					/*	
 				}
 			}	
 		}
 																	//now what do we do?  Well, we have to decide what is the most profitable...
 																	//newTrans transactions are left to take care of and all the servers on the same region are full
 }
-
+*/
+?>
