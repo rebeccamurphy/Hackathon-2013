@@ -1,0 +1,16 @@
+1) Distrubute across each individual region as best as possible.
+
+2) Keep track of the number of transactions left over in each region over the 200 mark.
+  R(1).X, R(2).X, R(3).X
+
+3) if there is leftover transactions in all regions (No R.X = 0) then a new server has to be built
+
+4) if there is room in a region but not in others, check to see how much you can distribute and get a price, similar to how we are doing now. compare that price to building a new server. 
+	chose cheapest and impliment.
+	
+5) If there are unoccupied servers, check to see if traffic is going down. If it is, then remove the server.	
+
+This should work for web tier and java tier.
+
+5) For Database tier, we need to check to see if more traffic is trending in a location that is NOT the current region. If, so, we need to check to see if it would be more beneficial to
+switch regions or impliment 2 regions.  If 2 databases are open, definitely check to see if it would be more beneficial to bring one of them down.
