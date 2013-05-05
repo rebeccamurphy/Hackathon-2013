@@ -22,8 +22,8 @@ $lineChart->setLegend(array("Profits"));
 $lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y')); //I think the only valid values for this are 'x' or 'y'
 $lineChart->setDataRange(0,15); //I think this counts for both axes
-$lineChart->addAxisRange(0, 0, 10, 1); //PARAMETERS: axis index, start value, end value, count between steps on axis (opt.)
-$lineChart->addAxisRange(1, 0, 10, 1);
+$lineChart->addAxisRange(0, 0, 10, 1); //this is for x axis -- PARAMETERS: axis index, start value, end value, count between steps on axis (opt.)
+$lineChart->addAxisRange(1, 0, 10, 1); //this is for y axis
 $lineChart->addAxisLabel(0, array("Turn"));
 $lineChart->addAxisLabel(1, array("Profits"));
 $lineChart->addBackgroundFill('bg', 'EFEFEF'); //PARAMETERS: part of chart being filled, color
