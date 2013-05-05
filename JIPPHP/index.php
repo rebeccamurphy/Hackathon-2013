@@ -13,13 +13,9 @@ require ('gChart.php');
  * the span of the game. Every 10 minutes (20 turns) will be an entry into the
  * x-axis, and the corresponding revenue at that time will be the y value.
  */
-$data_arr = array(); //will contain all the values we need to display, used in addDataSet
-$data_arr = array_fill(0, 10, 15); //for now, initializes data_arr to have 10 instances of 15000
 
-// 25 elements: 100, 200, 300, ... 1400
-//for ($iii=0; $iii<15; $iii++) {
-//	$data_arr[$iii] = ($iii * 100);
-//}
+$data_arr = array(); //will contain all the values we need to display, used in addDataSet
+array_push($data_arr, 1, 2, 3, 4, 5, 6, 7, 8, 9); //for now, initializes data_arr to have the numbers 1-9
 
 $x_axis_range_min = 0;    //first turn
 $x_axis_range_max = 15;
@@ -29,21 +25,22 @@ $y_axis_range_min = -20;    //minimum value from data set
 $y_axis_range_max = 20;   //maximum value from data set
 $y_axis_range_step = 5;
 
-$lineChart = new gLineChart(800,600);
+$lineChart = new gLineChart(300,300);
 $lineChart->addDataSet($data_arr);
-$lineChart->setLegend(array("Profit per Turn"));
-$lineChart->setColors(array("EFEFEF")); //gray
+$lineChart->setLegend(array("Profits"));
+$lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y')); //I think the only valid values for this are 'x' or 'y'
 $lineChart->setDataRange($y_axis_range_min, $y_axis_range_max); //I think this counts for both axes
 //PARAMETERS below: axis index, start value, end value, count between steps on axis (opt.)
-$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, $x_axis_range_step);
+$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, 1);
 $lineChart->addAxisRange(1, $y_axis_range_min, $y_axis_range_max, $y_axis_range_step);
 $lineChart->addAxisLabel(0, array("Turn"));
-$lineChart->addAxisLabel(1, array("Profit"));
+$lineChart->addAxisLabel(1, array("Profits"));
 //PARAMETERS below: part of chart being filled, color
-$lineChart->addBackgroundFill('bg', 'a21044'); //purple-ish red
-$lineChart->addBackgroundFill('c', '000000');  //black
+$lineChart->addBackgroundFill('bg', 'c4e53a');
+$lineChart->addBackgroundFill('c', '000000');
 ?>
-<img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class.
+<img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class. 
+
 </body>
 </html>
