@@ -16,8 +16,8 @@
 // + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
 class WebServer{
 	protected:
-		const int proportionSwitchNaEu=0.7
-		const int proportionSwitchAP=0.5
+		const int proportionSwitchNaEu=0.7;
+		const int proportionSwitchAP=0.5;
 		int serverCost;											//cost of the server
 		int numTrans;											//number of transactions currently in the object
 
@@ -34,11 +34,11 @@ class WebServer{
 			for(int i=1; i<=numServers; i++){
 				totalprofit+=(((profitTrans * server(i).numTrans) + proportionSwitchNaEu(profitTrans*server(i).numTrans/*FROMEU*/) + proportionSwitchAP(profitTrans*server(i).numTrans/*FROMAP*/))proportionNumTrans;
 			}
-			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) THEN SAME THING ONLY NOT n+1
+			bool shouldSwitch = totalprofit - (serverCost * numServersNA) /*THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP*/ > totalprofit - serverCost * (numServersNA + 1)) /*THEN SAME THING ONLY NOT n+1*/
 			return shouldSwitch;
 		}
 		void fillServer(int newTrans){
-			i = 1
+			i = 1;
 			int leftOver;
 			if (server(i).numTrans + newTrans < 180) then{		//if the current transaction number + the transactions to be added are under 180 then
 				server(i).numTrans += newTrans;					//add the transactions to the server
@@ -70,9 +70,12 @@ class WebServer{
 						}
 					}
 					//DO THING HERE
-					((profitTrans * numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))proportionNumTrans
- + for each server in the region since the number of people is different... - serverCost * numServersNA  THEN YOU MOTHERFUCKING REPEAT BUT FOR EU AND AP > ((profitTrans*numTrans) + proportionSwitchEU(profitTrans*numTransFROMEU) + proportionSwitchAP(profitTrans*numTransFROMAP))lossNumTrans 
- + for each server in the region since the number of people is different... - serverCost * (numServersNA + 1) THEN SAME THING ONLY NOT n+1
+					if(!isProfit()){
+						server.turnOn();
+					}
+					else
+						/*switch transactions to another region*/
+						
 				}
 			}	
 		}
