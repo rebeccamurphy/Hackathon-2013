@@ -8,20 +8,28 @@ require ('gChart.php');
 ?>
 <h2>Line Chart</h2>
 <?php
+
+$data_arr; //will contain all the values we need to display: used in addDataSet
+
+
 $lineChart = new gLineChart(300,300);
-$lineChart->addDataSet(array(112,315,66,40));
-$lineChart->addDataSet(array(212,115,366,140));
-$lineChart->addDataSet(array(112,95,116,140));
+$lineChart->addDataSet($data_arr);
+
+//$lineChart->addDataSet(array(212,115,366,140));
+//$lineChart->addDataSet(array(112,95,116,140));
+
 $lineChart->setLegend(array("first", "second", "third","fourth"));
-$lineChart->setColors(array("ff3344", "11ff11", "22aacc", "3333aa"));
+$lineChart->setColors(array("ff3344")); //, "11ff11", "22aacc", "3333aa"));
 $lineChart->setVisibleAxes(array('x','y'));
 $lineChart->setDataRange(30,400);
-$lineChart->addAxisRange(0, 1, 4, 1);
-$lineChart->addAxisRange(1, 30, 400);
+$lineChart->addAxisRange(0, 1, 4, 1); //PARAMETERS: AXIS 
+$lineChart->addAxisRange(1, 30, 400); //PARAMETERS: axis index, start value, end value
 $lineChart->addBackgroundFill('bg', 'EFEFEF');
 $lineChart->addBackgroundFill('c', '000000');
 ?>
 <img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class.
+
+<!---
 <p>
 <em>code:</em><br>
 <code>
@@ -39,8 +47,7 @@ $lineChart->addBackgroundFill('bg', 'EFEFEF');<br>
 $lineChart->addBackgroundFill('c', '000000');<br>
 </code>
 </p>
-
-
+-->
 
 <h1>PHP Wrapper for Google Chart API - Serverside Rendering - 0.1</h1>
 <h3>URL Request</h3>
