@@ -21,7 +21,7 @@ $x_axis_range_max = 3000; //last turn + 20 for good measure
 
 $y_axis_range_min = 20000;    //minimum value from data set
 $y_axis_range_max = -20000;   //maximum value from data set
-$y_axis_range_step = 1;       //we're doing every 10 mins, but the space between will be 1 (just labeled diff.)
+$y_axis_range_step = 100;       //we're doing every 10 mins, but the space between will be 1 (just labeled diff.)
 
 $lineChart = new gLineChart(800,300);
 $lineChart->addDataSet($data_arr);
@@ -30,7 +30,7 @@ $lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y')); //I think the only valid values for this are 'x' or 'y'
 $lineChart->setDataRange($y_axis_range_min, $y_axis_range_max); //I think this counts for both axes
 //PARAMETERS below: axis index, start value, end value, count between steps on axis (opt.)
-$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, 1);
+$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, 100);
 $lineChart->addAxisRange(1, $y_axis_range_min, $y_axis_range_max, $y_axis_range_step);
 $lineChart->addAxisLabel(0, array("Turn"));
 $lineChart->addAxisLabel(1, array("Profits"));
