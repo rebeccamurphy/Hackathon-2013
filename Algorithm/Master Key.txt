@@ -1,0 +1,31 @@
+Master Key 
+
+Costs
+
+REVENUE = profitTrans
+W_COST = wServerCost
+J_COST = jServerCost
+D_COST = dServerCost
+
+Config
+
+W.na = numWebServersNA
+W.eu = numWebServersEU
+W.ap = numWebServersAP
+J.na = numJavaServersNA
+J.eu = numJavaServersEU
+J.ap = numJavaServersAP
+D.na = numDataServersNA
+D.eu = numDataServersEU
+D.ap = numDataServersAP
+
+DEMAND
+
+I'm pretty sure I don't give a crap about the day, hour, minute, or second
+
+3 ints after the day and time:
+numTransNA
+numTransEU
+numTransAP
+
+
