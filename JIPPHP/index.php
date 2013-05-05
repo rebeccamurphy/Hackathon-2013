@@ -14,7 +14,7 @@ require ('gChart.php');
  * x-axis, and the corresponding revenue at that time will be the y value.
  */
 $data_arr = array(); //will contain all the values we need to display, used in addDataSet
-array_push($data_arr, 1, 2, 3, 4, 5, 6, 7, 8, 9); //for now, initializes data_arr to have the numbers 1-9
+$data_arr = array_fill(0, 1000, 5000); //for now, initializes data_arr to have the number 5000 a bunch of times
 
 $x_axis_range_min = 0;    //first turn
 $x_axis_range_max = 3000; //last turn + 20 for good measure
@@ -23,7 +23,7 @@ $y_axis_range_min = 20000;    //minimum value from data set
 $y_axis_range_max = -20000;   //maximum value from data set
 $y_axis_range_step = 1;       //we're doing every 10 mins, but the space between will be 1 (just labeled diff.)
 
-$lineChart = new gLineChart(300,300);
+$lineChart = new gLineChart(800,300);
 $lineChart->addDataSet($data_arr);
 $lineChart->setLegend(array("Profits"));
 $lineChart->setColors(array("ff3344"));
