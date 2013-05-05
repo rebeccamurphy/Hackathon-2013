@@ -22,7 +22,10 @@ class WebServer{
 		int numTrans;											//number of transactions currently in the object
 
 	public:
-		WebServer(): serverCost(0), numTrans(0){}
+		WebServer(){
+			serverCost = 0;
+			numTrans = 0;
+		}
 		WebServer(int cost, int numT){
 			serverCost = cost;									//has to be tweaked to get info from game
 			numTrans = numT;
