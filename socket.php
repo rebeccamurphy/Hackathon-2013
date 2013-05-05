@@ -78,7 +78,7 @@ echo "Message send successfully \n";
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while ($turns<3) {
+while (true) {
 
     //im just going to hard code these. its the easiest way
 
@@ -143,8 +143,8 @@ while ($turns<3) {
 This part is where we would reference another function to do how we should control the game.
 */
 //Mega($CONFIG,$COSTS,$DEMAND,$DIST);
-if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
-//if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST)), 0))
+//if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST, $turns), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST,$turns)), 0))
 
 {
     $errorcode = socket_last_error();
