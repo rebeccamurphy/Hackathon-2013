@@ -8,46 +8,22 @@ require ('gChart.php');
 ?>
 <h2>Line Chart</h2>
 <?php
-
-$data_arr; //will contain all the values we need to display: used in addDataSet
-
+$data_arr = ()()()()(); //will contain all the values we need to display: used in addDataSet
 
 $lineChart = new gLineChart(300,300);
 $lineChart->addDataSet($data_arr);
-
-//$lineChart->addDataSet(array(212,115,366,140));
-//$lineChart->addDataSet(array(112,95,116,140));
-
-$lineChart->setLegend(array("first", "second", "third","fourth"));
-$lineChart->setColors(array("ff3344")); //, "11ff11", "22aacc", "3333aa"));
+    //$lineChart->addDataSet(array(212,115,366,140));
+    //$lineChart->addDataSet(array(112,95,116,140));
+$lineChart->setLegend(array("Profits"));
+$lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y'));
 $lineChart->setDataRange(30,400);
-$lineChart->addAxisRange(0, 1, 4, 1); //PARAMETERS: AXIS 
-$lineChart->addAxisRange(1, 30, 400); //PARAMETERS: axis index, start value, end value
-$lineChart->addBackgroundFill('bg', 'EFEFEF');
+$lineChart->addAxisRange(0, 1, 4, 1); //PARAMETERS: axis index, start value, end value, count between steps on axis (opt.)
+$lineChart->addAxisRange(1, 30, 400);
+$lineChart->addBackgroundFill('bg', 'EFEFEF'); //PARAMETERS: part of chart being filled, color
 $lineChart->addBackgroundFill('c', '000000');
 ?>
 <img src="<?php print $lineChart->getUrl();  ?>" /> <br> line chart using the gLineChart class.
-
-<!---
-<p>
-<em>code:</em><br>
-<code>
-$lineChart = new gLineChart(300,300);<br>
-$lineChart->addDataSet(array(112,315,66,40));<br>
-$lineChart->addDataSet(array(212,115,366,140));<br>
-$lineChart->addDataSet(array(112,95,116,140));<br>
-$lineChart->setLegend(array("first", "second", "third","fourth"));<br>
-$lineChart->setColors(array("ff3344", "11ff11", "22aacc", "3333aa"));<br>
-$lineChart->setVisibleAxes(array('x','y'));<br>
-$lineChart->setDataRange(30,400);<br>
-$lineChart->addAxisRange(0, 1, 4, 1);<br>
-$lineChart->addAxisRange(1, 30, 400);<br>
-$lineChart->addBackgroundFill('bg', 'EFEFEF');<br>
-$lineChart->addBackgroundFill('c', '000000');<br>
-</code>
-</p>
--->
 
 <h1>PHP Wrapper for Google Chart API - Serverside Rendering - 0.1</h1>
 <h3>URL Request</h3>
@@ -59,12 +35,6 @@ $lineChart->addBackgroundFill('c', '000000');<br>
 <p>
 <img src="img.php?width=300&amp;height=200&amp;post=true" />
 </p>
-
-
-
-
-
-
 
 </body>
 </html>
