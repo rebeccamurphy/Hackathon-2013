@@ -14,23 +14,24 @@ require ('gChart.php');
  * x-axis, and the corresponding revenue at that time will be the y value.
  */
 $data_arr = array(); //will contain all the values we need to display, used in addDataSet
-$data_arr = array_fill(0, 10, 5000); //for now, initializes data_arr to have the number 5000 a bunch of times
+$data_arr = array_fill(0, 100, 15000); //for now, initializes data_arr to have the number 5000 a bunch of times
 
 $x_axis_range_min = 0;    //first turn
 $x_axis_range_max = 3000; //last turn + 20 for good measure
+$x_axis_range_step = 600;
 
-$y_axis_range_min = 20000;    //minimum value from data set
-$y_axis_range_max = -20000;   //maximum value from data set
-$y_axis_range_step = 100;       //we're doing every 10 mins, but the space between will be 1 (just labeled diff.)
+$y_axis_range_min = -20000;    //minimum value from data set
+$y_axis_range_max = 20000;   //maximum value from data set
+$y_axis_range_step = 1000;
 
-$lineChart = new gLineChart(800,300);
+$lineChart = new gLineChart(1000,600);
 $lineChart->addDataSet($data_arr);
 $lineChart->setLegend(array("Profits"));
 $lineChart->setColors(array("ff3344"));
 $lineChart->setVisibleAxes(array('x','y')); //I think the only valid values for this are 'x' or 'y'
 $lineChart->setDataRange($y_axis_range_min, $y_axis_range_max); //I think this counts for both axes
 //PARAMETERS below: axis index, start value, end value, count between steps on axis (opt.)
-$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, 100);
+$lineChart->addAxisRange(0, $x_axis_range_min, $x_axis_range_max, $x_axis_range_step);
 $lineChart->addAxisRange(1, $y_axis_range_min, $y_axis_range_max, $y_axis_range_step);
 $lineChart->addAxisLabel(0, array("Turn"));
 $lineChart->addAxisLabel(1, array("Profits"));
