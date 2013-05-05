@@ -52,10 +52,10 @@ echo "Message send successfully \n";
  
 //Receives the first COST BEFORE START
 //"COSTS 9 3 6 15"
-$ret = ""; 
-$ret = socket_read($sock, 1000, PHP_BINARY_READ);   
-echo $ret ."\n";
- 
+$COSTS = socket_read($sock, 1024, PHP_BINARY_READ);   
+echo $COSTS ."\n";
+echo "Message send successfully in loop  \n";
+$COSTS = convert($COSTS);
 //STARTS TEH GAME
     
 if( ! socket_send ( $sock , "START", strlen("START") , 0))
@@ -67,27 +67,65 @@ if( ! socket_send ( $sock , "START", strlen("START") , 0))
 }
  
 echo "Message send successfully \n";
- 
+
+
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while ($turns< 3 ) {
-   
+while (true) {
 
-    for ( $i=0; $i<3; $i++)
-    {
+
+    //im just going to hard code these. its the easiest way
+
+    //config    
+        $ret = "";
+        $ret = socket_read($sock, 1000, PHP_BINARY_READ);
+        if ($ret =="END")
+        {
+            break;
+        }   
+        echo $ret . "\n";
+        $CONFIG = convert($ret);
+
+
         if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
             {
                 $errorcode = socket_last_error();
                 $errormsg = socket_strerror($errorcode);
                 die("Could not send data: [$errorcode] $errormsg \n");
             }
+    //DEMAND
         $ret = "";
-        //"DEMAND MON..."
-        $ret = socket_read($sock, 1024, PHP_BINARY_READ);   
-        echo $ret ."\n";
-        echo "Message send successfully in loop  \n";
-    }
+        $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
+        echo $ret . "\n";
+        $DEMAND= convert($ret);
+
+        if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
+            {
+                $errorcode = socket_last_error();
+                $errormsg = socket_strerror($errorcode);
+                die("Could not send data: [$errorcode] $errormsg \n");
+            }
+    //DIST
+        $ret = "";
+        $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
+        echo $ret . "\n";
+        $DIST= convert($ret);
+
+        if( ! socket_send ( $sock , "RECD", strlen("RECD"), 0))
+            {
+                $errorcode = socket_last_error();
+                $errormsg = socket_strerror($errorcode);
+                die("Could not send data: [$errorcode] $errormsg \n");
+            }
+    //PROFIT
+        $ret = "";
+        $ret = socket_read($sock, 1000, PHP_BINARY_READ);   
+        echo $ret . "\n";
+        $PROFIT= convert($ret);
+
+        
+    
 /*
 This part is where we would reference another function to do how we should control the game.
 */
@@ -99,10 +137,8 @@ if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0
     die("Could not send data: [$errorcode] $errormsg \n");
 }
 //This should return PROFIT and and another turn.
-$ret = "";
-$ret = socket_read($sock, 1000, PHP_BINARY_READ);   
-echo $ret . "\n";
 $turns+=1;
+
 }
 
 if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
@@ -114,4 +150,5 @@ if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
 }
 
 socket_close($sock);
+echo "IT HAS BEEN DONE."
 ?>
