@@ -3,10 +3,12 @@ include 'convert.php';
 include 'webserver.php';
 $sock = socket_create(AF_INET, SOCK_STREAM, 0);
 $ip_address = gethostbyname("hackathon.hopto.org");
-$cumprofarray= array();
+
 $percentlast = array();
 $percentmaxlast = array();
+$cumprofarray= array();
 $percentmaxpos = array();
+$turnsperdata = 20; //10 minutes mulitple amount of minutes *2
 //lines 1-25 creates and establishes the connection. 26-76 sends messages to start game. 
 //line 54-57 deal with the first COSTS we get back.
 if(!($sock = socket_create(AF_INET, SOCK_STREAM, 0)))
@@ -73,11 +75,10 @@ if( ! socket_send ( $sock , "START", strlen("START") , 0))
  
 echo "Message send successfully \n";
 
-
 //beneath is where the game really starts. 
 // starts the game loop
 $turns = 0;
-while (true) {
+while ($turns<3) {
 
     //im just going to hard code these. its the easiest way
 
@@ -128,13 +129,22 @@ while (true) {
         echo $ret . "\n";
         $PROFIT= convert($ret);
 
+        //print_r ($PROFIT);
+        if (fmod($turns, $turnsperdata)===0 or $turns == 0)
+        {
+            array_push($percentlast,$PROFIT[0]);
+            array_push($percentmaxlast,$PROFIT[1]);
+            array_push($cumprofarray,$PROFIT[3]);
+            array_push($percentmaxpos,$PROFIT[4]);
+        }   
+
 
 /*
 This part is where we would reference another function to do how we should control the game.
 */
 //Mega($CONFIG,$COSTS,$DEMAND,$DIST);
-//if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
-if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST)), 0))
+if( ! socket_send ( $sock , "CONTROL 0 0 0 0 0 0 0 0 0", strlen("CONTROL 0 0 0 0 0 0 0 0 0"), 0))
+//if( ! socket_send ( $sock , Mega($CONFIG,$COSTS,$DEMAND,$DIST), strlen(Mega($CONFIG,$COSTS,$DEMAND,$DIST)), 0))
 
 {
     $errorcode = socket_last_error();
@@ -154,7 +164,7 @@ if( ! socket_send ( $sock , "STOP", strlen("STOP"), 0))
      
     die("Could not send data: [$errorcode] $errormsg \n");
 }
-
+print_r ($cumprofarray);
 socket_close($sock);
 echo $turns ."\n";
 ?>
