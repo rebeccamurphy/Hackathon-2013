@@ -49,7 +49,7 @@ else {													//if we are going to exceed 180, then:
 		
 		}
 	}
-	// NEEDS A WAY TO KEEP TRACK OF HOW MANY WERE TRANSFERED FROM R(1) TO R(2) FOR PRICE COMPARISONS LATER USING SOME PARTS OF WHATISMYLIFE CODE
+	// A variable needs to be added to calculate how many transfers were moved from R(1) TO R(2) for price comparison
 	
 	if (X != 0){
 	
@@ -59,7 +59,7 @@ else {													//if we are going to exceed 180, then:
 		
 			R(3).S(i).numTrans = R(2).S(i).numTrans + X;		//goes to the next region and repeats
 			X = 0;
-			BREAK OUT OF LOOP
+			break;
 		}
 		else {
 
@@ -71,23 +71,23 @@ else {													//if we are going to exceed 180, then:
 				if (R(3).S(j).numTrans + X < 180) then{
 					S(j).t = S(j).t + X;
 					X = 0;
-					BREAK OUT OF LOOP
+					break;
 				}
 		
 			
 			}
-			// NEEDS A WAY TO KEEP TRACK OF HOW MANY WERE TRANSFERED FROM R(1) TO R(3) FOR PRICE COMPARISONS LATER USING SOME PARTS OF WHATISMYLIFE CODE
+			// A variable needs to be added to calculate how many transfers were moved from R(1) TO R(3) for price comparison
 	
 			if (X != 0){
-					//THEN A NEW SERVER DEFINITITELY NEEDS TO ME MADE I'M PRETTY SURE, EVERYWHERE IS PRETTY DAMN FULL
+					//Then there is no room to distrubute accors regions, so a new server must be made regardless
 			}
 		}
 
 	}
 }
 
-//AND THEN THIS GETS COMPARED TO THE SAME THING, ONLY USE R(3) FIRST THEN R(2)
 
-//THEN WE START DOING PRICE COMPARISION FOR R(1)-->R(2)-->R(3), R(1)-->R(3)-->R(2), AND MAKING A NEW SERVER IN R(1)
+
+//Then we do price comparison, checking to see if it would be more profitable to distribute in this way or to make a server.
 
 
