@@ -1,11 +1,28 @@
-database checkin txt it
-
-
-FIRSTIES
-
 if approaching 1200 we look at opening another server compared to the below stuff, which we should check periodically anyways.
 
 -We check where things are coming in from.
 	1( Is it more profitable to open the database in another region?
 	2( is it more profitable to have some combination of databases across 2 regions?
-	3( It is likely NEVER profitable to open 3 databases 
+	3( It is likely NEVER profitable to open 3 databases
+
+if (transactionsOnServer > 1200) then
+{
+
+	//Attempts to distribute
+	//If not distributing well, check if trending. if trending, make another server...
+
+}
+
+
+MakeAnotherServerFunction:
+
+	//Must check traffic from all areas. Is one java server area getting more traffic then the others?
+												If ^that's trending, compare profits of opening 2 servers compared to opening just 1.
+												Decide to open 2 or one.
+												
+												
+TakeDownServerFucnction:
+
+	//If a server is not being filled in an area, or has barely any traffic trending decreasing....
+	//Checks profits of taking down server, including moving around transfers. 
+	//Based on price check and trend, decide whether to take down server.
